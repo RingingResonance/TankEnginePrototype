@@ -1,4 +1,4 @@
-/* Genetic algorithm test */
+/* Core systems stuff. */
 
 #include <iostream>
 #include <thread>
