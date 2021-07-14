@@ -1,7 +1,8 @@
-/* Core systems stuff. */
+/* Genetic algorithm test */
 
 #include <iostream>
 #include <thread>
+#include <cstring>
 #include <math.h>
 #include "coreSystems.h"
 #include "fgetter.h"
@@ -14,8 +15,13 @@ using namespace std;
 
 int main()
 {
-    C_3DObj* O_mapStuff[16];//create O_mapStuff pinter.
-    O_mapStuff[0] = new C_3DObj(3,1);
+    char nametest[] = "This Is A Name.";
+    unsigned int objID = 5;
+    C_3DObjClone O_nameTest = C_3DObjClone(nametest, objID, 0, 1);
+    cout << O_nameTest.ObjName;
+
+    C_3DObjData* O_mapStuff[16];//create O_mapStuff pointer.
+    O_mapStuff[0] = new C_3DObjData(3,1,objID);
     C_nCalc O_calcultron;   //create a normals calc object.
     //Just a simple triangle in front of the camera.
     O_mapStuff[0]->verts[0] = -11;//x
@@ -38,7 +44,7 @@ int main()
 
     /** Calculate Normals. **/
     /** ThreadCount of 0 or 1 means only 1 single thread. **/
-void C_nCalc::normalsCalc(C_3DObj* O_objIn, int threadNum, int threadCount){
+void C_nCalc::normalsCalc(C_3DObjData* O_objIn, int threadNum, int threadCount){
     unsigned int faceIndex = 0;
     unsigned int vertIndex = 0;
     double workingVert[3][3];
